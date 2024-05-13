@@ -1,0 +1,22 @@
+{
+  "name": "password-robot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/static": "^7.0.4",
+    "fastify": "^4.27.0",
+    "selenium-webdriver": "^4.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.11",
+    "@types/selenium-webdriver": "^4.1.22",
+    "typescript": "^5.4.5"
+  }
+}
