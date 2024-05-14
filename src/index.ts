@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { Options } from "selenium-webdriver/chrome"
 import { Builder, By, until } from "selenium-webdriver"
 import { generatePassword } from "./craker"
-import { generatePasswordByDicctionary } from "./dicctionary-craker"
+import { generatePasswordByDictionary } from "./dictionary-craker"
 
 const fastify = Fastify()
 
@@ -27,7 +27,7 @@ async function bootstrap() {
     await driver.get('http://localhost:4000')
     const usernameInput = await driver.findElement(By.xpath('//*[@id="input-username"]'))
     await usernameInput.sendKeys('user1')
-    const gen = process.argv.includes('--dicctionary') ? generatePasswordByDicctionary(15) :  generatePassword(15)
+    const gen = process.argv.includes('--dictionary') ? generatePasswordByDictionary(15) :  generatePassword(15)
     console.log('Cracker started...')
     const initial = new Date()
     while(true) {
