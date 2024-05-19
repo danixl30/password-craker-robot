@@ -8,6 +8,8 @@ import { generatePasswordByDictionary } from "./dictionary-craker"
 
 const fastify = Fastify()
 
+const usersTries: Record<string, string[]> = {}
+
 fastify.register(fastifyStatic, {
     root: join(process.cwd(), 'public'),
     prefix: '/public/'
@@ -15,6 +17,29 @@ fastify.register(fastifyStatic, {
 
 fastify.get('/', (_request, reply) => {
     reply.sendFile('index.html')
+})
+
+fastify.get<{
+    Params: {
+        username: string
+    }
+}>('/tries/:username', (request) => {
+    return usersTries[request.params.username]
+})
+
+fastify.post<{
+    Body: {
+        username: string
+        password: string
+    }
+}>('/login', (request, reply) => {
+    if (request.body.password !== 'boot') {
+        if (!usersTries[request.body.username])
+            usersTries[request.body.username] = []
+        usersTries[request.body.username].push(request.body.password)
+        return reply.code(400).send('invalid')
+    }
+    reply.code(200).send('Login successfull')
 })
 
 async function bootstrap() {
@@ -50,6 +75,6 @@ async function bootstrap() {
             break
         }
     }
-    process.exit(0)
+    await driver.close()
 }
 bootstrap()
