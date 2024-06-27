@@ -1,7 +1,8 @@
 const inputUsername = document.getElementById('input-username')
 const inputPassword = document.getElementById('input-password')
 
-async function onClickLogin() {
+async function onClickLogin(e) {
+    e.preventDefault()
     const loginText = document.getElementById('text-post-login')
     while(loginText.firstChild)
         loginText.removeChild(loginText.firstChild)
@@ -24,3 +25,8 @@ async function onClickLogin() {
     }
     document.getElementById('text-post-login').appendChild(h5Element)
 }
+
+const form = document.getElementById("form");
+
+// attach event listener
+form.addEventListener("submit", onClickLogin, true);
