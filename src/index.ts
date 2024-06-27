@@ -50,7 +50,7 @@ async function bootstrap() {
     options.addArguments('--disable-dev-shm-usage')
     const driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build()
     await driver.get('http://localhost:4000')
-    const usernameInput = await driver.findElement(By.xpath('//*[@id="input-username"]'))
+    const usernameInput = await driver.findElement(By.xpath('/html/body/div/div/div[2]/div[3]/div/form/div[1]/input'))
     await usernameInput.sendKeys('user1')
     const gen = process.argv.includes('--dictionary') ? generatePasswordByDictionary(15) :  generatePassword(15)
     console.log('Cracker started...')
@@ -65,7 +65,8 @@ async function bootstrap() {
         const passwordInput = await driver.findElement(By.xpath('//*[@id="input-password"]'))
         await passwordInput.clear()
         await passwordInput.sendKeys(pass.value)
-        await driver.findElement(By.xpath('/html/body/button')).click()
+        await driver.findElement(By.xpath('/html/body/div/div/div[2]/div[3]/div/form/div[3]/div[2]/button')).click()
+        await driver.sleep(100)
         const postLoginText = await driver.findElement(By.xpath('//*[@id="text-post-login"]/h5'))
         await driver.wait(until.elementIsVisible(postLoginText), 1000)
         if ((await postLoginText.getText()) === 'Login successfull') {
