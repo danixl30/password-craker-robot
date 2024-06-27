@@ -15,8 +15,8 @@ Run `pnpm start -- --dictionary` for a dev server. Navigate to `http://localhost
 
 ## Dependencies
 
-[Boostrap] (https://getbootstrap.com/) version 5.5.5
-[TemplateLogIn] (https://codepen.io/xmas1224/pen/MWJqbao)
-[ChromeDriver] (https://googlechromelabs.github.io/chrome-for-testing/#stable) version: 126.0.6478.126 (r1300313)
-[pnpm] (https://pnpm.io/installation) version 9.4.0
+[Boostrap](https://getbootstrap.com/) version 5.5.5
+[TemplateLogIn](https://codepen.io/xmas1224/pen/MWJqbao)
+[ChromeDriver](https://googlechromelabs.github.io/chrome-for-testing/#stable) version: 126.0.6478.126 (r1300313)
+[pnpm](https://pnpm.io/installation) version 9.4.0
 
