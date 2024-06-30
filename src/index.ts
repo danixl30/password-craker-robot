@@ -78,6 +78,7 @@ async function bootstrap() {
         await passwordInput.clear()
         await passwordInput.sendKeys(pass.value)
         await driver.findElement(By.xpath('/html/body/div/div/div[2]/div[3]/div/form/div[3]/div[2]/button')).click()
+        await driver.sleep(50)
         const postLoginText = await driver.findElement(By.xpath('//*[@id="text-post-login"]/h5'))
         await driver.wait(until.elementIsEnabled(postLoginText), 1000)
         if ((await postLoginText.getText()) === 'Login successfull') {
