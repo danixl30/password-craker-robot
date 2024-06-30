@@ -16,6 +16,7 @@ while(true) {
         console.log('Password not found...')
         break
     }
+    console.log(current.value)
     if (sha256(current.value) === hash) {
         console.log(current.value)
         console.log('Found in attemp: ', counter)
