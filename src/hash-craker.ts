@@ -12,8 +12,10 @@ const gen = process.argv.includes('--dictionary') ? generatePasswordByDictionary
 while(true) {
     counter++
     const current = gen.next()
-    if (current.done)
-    break
+    if (current.done) {
+        console.log('Password not found...')
+        break
+    }
     if (sha256(current.value) === hash) {
         console.log(current.value)
         console.log('Found in attemp: ', counter)
