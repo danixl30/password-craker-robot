@@ -5,17 +5,17 @@ import { Options } from "selenium-webdriver/chrome"
 import { Builder, By, until } from "selenium-webdriver"
 import { generatePassword } from "./craker"
 import { generatePasswordByDictionary } from "./dictionary-craker"
-import fs from 'fs';
-import moment from 'moment';
-import ip from 'ip';  
+import fs from 'node:fs'
+import moment from 'moment'
+import ip from 'ip'  
 
 const fastify = Fastify()
 
 const usersTries: Record<string, string[]> = {}
 
 function logAttempt(username: string, password: string, userIp: string, success: boolean) {
-    const logMessage = `User: ${username}, Password: ${password}, IP: ${userIp}, Date: ${moment().format('YYYY-MM-DD HH:mm:ss')}, Success: ${success}\n`;
-    fs.appendFileSync('attack_log.txt', logMessage, 'utf8');
+    const logMessage = `User: ${username}, Password: ${password}, IP: ${userIp}, Date: ${moment().format('YYYY-MM-DD HH:mm:ss')}, Success: ${success}\n`
+    fs.appendFileSync(join(process.cwd(), './attack_log.txt'), logMessage, 'utf8')
 }
 
 fastify.register(fastifyStatic, {
@@ -41,8 +41,7 @@ fastify.post<{
         password: string
     }
 }>('/login', (request, reply) => {
-
-    const userIp = ip.address(); 
+    const userIp = ip.address() 
     if (request.body.password !== '1') {
         if (!usersTries[request.body.username])
             usersTries[request.body.username] = []

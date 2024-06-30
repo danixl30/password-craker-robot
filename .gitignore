@@ -3,3 +3,4 @@ node_modules
 dist
 chromedriver.exe
 pnpm-lock.yaml
+attack_log.txt
